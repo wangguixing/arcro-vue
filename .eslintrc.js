@@ -2,7 +2,7 @@
  * @Author: wangguixing 1163260785@qq.com
  * @Date: 2023-03-06 16:07:33
  * @LastEditors: wangguixing 1163260785@qq.com
- * @LastEditTime: 2023-03-06 18:04:50
+ * @LastEditTime: 2023-03-07 16:21:26
  * @FilePath: \myPages\.eslintrc.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -39,7 +39,7 @@ module.exports = {
   settings: {
     'import/resolver': {
       typescript: {
-        project: path.resolve(__dirname, './tsconfig.json'),
+        project: path.resolve(__dirname, './tsconfig.app.json'),
       },
     },
   },
@@ -61,7 +61,7 @@ module.exports = {
     '@typescript-eslint/no-empty-function': 1,
     '@typescript-eslint/no-explicit-any': 0,
     'import/extensions': [
-      2,
+      0,
       'ignorePackages',
       {
         js: 'never',
@@ -71,8 +71,10 @@ module.exports = {
       },
     ],
     'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0,
+    'no-console': process.env.NODE_ENV === 'production' ? 2 : 0,
     'no-param-reassign': 0,
     'prefer-regex-literals': 0,
     'import/no-extraneous-dependencies': 0,
+    'import/prefer-default-export': 'off',
   },
 };

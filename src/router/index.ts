@@ -1,14 +1,22 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import Demo from '../views/demo'
+import { createRouter, createWebHistory } from 'vue-router';
+import NProgress from 'nprogress'; // progress bar
+import 'nprogress/nprogress.css';
+import { routes } from './getRouteByDict';
+
+NProgress.configure({ showSpinner: false }); // NProgress Configuration
+
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  history: createWebHistory(),
   routes: [
     {
       path: '/',
-      name: 'home',
-      component: Demo
-    }
-  ]
-})
+      redirect: 'login',
+    },
+    ...routes,
+  ],
+  scrollBehavior() {
+    return { top: 0 };
+  },
+});
 
-export default router
+export default router;

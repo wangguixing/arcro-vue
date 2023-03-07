@@ -16,9 +16,9 @@
     "allowImportingTsExtensions": true,
     "noEmit": true,
     "composite": true,
-    "baseUrl": ".",
+    "baseUrl": "./",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["src/*"]
     },
     "ignoreDeprecations": "5.0"
   }
