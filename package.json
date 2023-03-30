@@ -11,7 +11,7 @@
     "report": "cross-env REPORT=true npm run build",
     "preview": "npm run build && vite preview --host",
     "type-check": "vue-tsc --noEmit -p tsconfig.vitest.json --composite false",
-    "lint-staged": "npx lint-staged"
+    "lint-staged": "git add . && npx lint-staged"
   },
   "homepage": "https://github.com/wangguixing/arcro-vue#readme",
   "bugs": {
