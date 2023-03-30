@@ -2,7 +2,7 @@
  * @Author: wangguixing 1163260785@qq.com
  * @Date: 2023-03-06 16:07:33
  * @LastEditors: wangguixing 1163260785@qq.com
- * @LastEditTime: 2023-03-07 16:21:26
+ * @LastEditTime: 2023-03-29 17:07:16
  * @FilePath: \myPages\.eslintrc.js
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -44,8 +44,11 @@ module.exports = {
     },
   },
   rules: {
+    'no-nested-ternary': 0,
+    'no-restricted-syntax': 0,
     'prettier/prettier': 1,
     // Vue: Recommended rules to be closed or modify
+    'vue/comment-directive': 0,
     'vue/require-default-prop': 0,
     'vue/singleline-html-element-content-newline': 0,
     'vue/max-attributes-per-line': 0,
@@ -55,7 +58,6 @@ module.exports = {
     'vue/padding-line-between-blocks': 1,
     'vue/require-direct-export': 1,
     'vue/multi-word-component-names': 0,
-    // Allow @ts-ignore comment
     '@typescript-eslint/ban-ts-comment': 0,
     '@typescript-eslint/no-unused-vars': 1,
     '@typescript-eslint/no-empty-function': 1,
