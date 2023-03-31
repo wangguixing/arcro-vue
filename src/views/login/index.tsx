@@ -2,7 +2,7 @@
  * @Author: wangguixing 1163260785@qq.com
  * @Date: 2023-03-30 13:59:28
  * @LastEditors: wangguixing 1163260785@qq.com
- * @LastEditTime: 2023-03-30 17:55:39
+ * @LastEditTime: 2023-03-31 09:33:09
  * @FilePath: \arcro-vue\src\views\login\index.tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -12,12 +12,11 @@ import { Message } from '@arco-design/web-vue';
 import { useStorage } from '@vueuse/core';
 import { useUserStore } from '@/store';
 import useLoading from '@/hooks/loading';
-// TS类型
-import type { ValidatedError } from '@arco-design/web-vue/es/form/interface';
-import './index.less';
-
 import useEventBus from '@/hooks/eventBus';
+import type { ValidatedError } from '@arco-design/web-vue/es/form/interface';
+import LoginIconLogo from '@/assets/images/login/icon-logo.png';
 import type { LoginData } from './types';
+import './index.less';
 
 export default defineComponent({
   name: 'Login',
@@ -48,23 +47,24 @@ export default defineComponent({
     }) => {
       if (loading.value) return;
       if (!errors) {
+        console.log(11);
         setLoading(true);
         try {
-          await userStore.login(values as LoginData);
-          const { redirect, ...othersQuery } = router.currentRoute.value.query;
-          router.push({
-            name: (redirect as string) || 'Workplace',
-            query: {
-              ...othersQuery,
-            },
-          });
+          // await userStore.login(values as LoginData);
+          // const { redirect, ...othersQuery } = router.currentRoute.value.query;
+          // router.push({
+          //   name: (redirect as string) || 'Workplace',
+          //   query: {
+          //     ...othersQuery,
+          //   },
+          // });
           Message.success('登录成功');
-          const { rememberPassword } = loginConfig.value;
-          const { username, password } = values;
-          // 实际生产环境需要进行加密存储。
-          // The actual production environment requires encrypted storage.
-          loginConfig.value.username = rememberPassword ? username : '';
-          loginConfig.value.password = rememberPassword ? password : '';
+          // const { rememberPassword } = loginConfig.value;
+          // const { username, password } = values;
+          // // 实际生产环境需要进行加密存储。
+          // // The actual production environment requires encrypted storage.
+          // loginConfig.value.username = rememberPassword ? username : '';
+          // loginConfig.value.password = rememberPassword ? password : '';
         } catch (err) {
           errorMessage.value = (err as Error).message;
         } finally {
@@ -90,7 +90,10 @@ export default defineComponent({
             layout="vertical"
             onSubmit={handleSubmit}
           >
-            <div class="login-form-title">Arcro-vue</div>
+            <div class="login-form-title">
+              <img src={LoginIconLogo} />
+              <div>Arcro-vue</div>
+            </div>
             <a-form-item
               field="username"
               rules={[{ required: true, message: '用户名不能为空' }]}
@@ -117,7 +120,7 @@ export default defineComponent({
                 v-slots={{ prefix: () => <icon-lock /> }}
               ></a-input-password>
             </a-form-item>
-            <a-space size={16} direction="vertical">
+            <a-space size="16" direction="vertical">
               <div class="login-form-password-actions">
                 <a-checkbox
                   checked="rememberPassword"
