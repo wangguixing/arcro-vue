@@ -14,3 +14,4 @@
 - vite-plugin-compression  （开启GZIP压缩）
 - vite-plugin-cdn-import （cdn引入）
 - @vitejs/plugin-legacy  (传统浏览器支持)--->对vue3来说无意义，Proxy决定了vue3不支持ie11，但对react或其他可通过此实现支持
+- mockjs、vite-plugin-mock

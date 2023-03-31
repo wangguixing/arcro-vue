@@ -1,6 +1,6 @@
 {
   "extends": "@vue/tsconfig/tsconfig.web.json",
-  "include": ["src/**/*", "src/**/*.vue"],
+  "include": ["src/**/*", "src/**/*.vue", "image.d.ts", "env.d.ts"],
   "exclude": ["src/**/__tests__/*", "node_modules"],
   "compilerOptions": {
     "target": "ES2020",
@@ -20,6 +20,7 @@
     "paths": {
       "@/*": ["src/*"]
     },
+    "types": ["vite/client"],
     "ignoreDeprecations": "5.0"
   }
 }
