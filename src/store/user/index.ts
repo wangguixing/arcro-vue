@@ -1,11 +1,12 @@
 /*
  * @Author: wangguixing 1163260785@qq.com
  * @Date: 2023-03-13 17:01:42
- * @LastEditors: wangguixing 1163260785@qq.com
- * @LastEditTime: 2023-03-13 17:07:33
- * @FilePath: \arcro-vue\src\stores\user\index.ts
+ * @LastEditors: wangguixing
+ * @LastEditTime: 2023-04-01 14:18:19
+ * @FilePath: \src\store\user\index.ts
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
+
 import { defineStore } from 'pinia';
 import {
   login as userLogin,
@@ -13,7 +14,7 @@ import {
   getUserInfo,
 } from '@/api/user';
 import type { LoginData } from '@/api/user';
-import { setToken, clearToken } from '@/utils/auth';
+import { setTokenValue, removeToken } from '@/utils/auth';
 import { removeRouteListener } from '@/utils/route-listener';
 import type { UserState } from './types';
 import useAppStore from '../app';
@@ -72,16 +73,16 @@ const useUserStore = defineStore('user', {
     async login(loginForm: LoginData) {
       try {
         const res = await userLogin(loginForm);
-        setToken(res.data.token);
+        setTokenValue(res.data.token);
       } catch (err) {
-        clearToken();
+        removeToken();
         throw err;
       }
     },
     logoutCallBack() {
       const appStore = useAppStore();
       this.resetInfo();
-      clearToken();
+      removeToken();
       removeRouteListener();
       appStore.clearServerMenu();
     },

@@ -1,11 +1,14 @@
 <!--
- * @Author: wangguixing 1163260785@qq.com
- * @Date: 2023-03-30 13:35:21
- * @LastEditors: wangguixing 1163260785@qq.com
- * @LastEditTime: 2023-03-30 13:35:41
- * @FilePath: \arcro-vue\src\views\not-found\index.vue
- * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ * @Author: wangguixing
+ * @Date: 2023-03-30 18:08:10
+ * @LastEditors: wangguixing
+ * @LastEditTime: 2023-04-01 13:06:15
+ * @FilePath: \src\views\not-found\index.vue
+ * @Description: 注明出处即可
+ * Copyright 2023 OBKoro1, All Rights Reserved.
+ * 2023-03-30 18:08:10
 -->
+
 <template>
   <div class="content">
     <a-result class="result" status="404" :subtitle="'not found'"> </a-result>

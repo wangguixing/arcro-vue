@@ -5,6 +5,7 @@
  * @return {*} 返回值类型取决于泛型类型
  */
 export function formatGlobModules<T>(_modules: any, result: Array<T>) {
+  console.log('_modules :>>>>>>>', _modules);
   Object.keys(_modules).forEach((key) => {
     const defaultModule = _modules[key].default;
     if (!defaultModule) return;

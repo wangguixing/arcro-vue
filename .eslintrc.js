@@ -1,11 +1,14 @@
 /*
- * @Author: wangguixing 1163260785@qq.com
+ * @Author: wangguixing
  * @Date: 2023-03-06 16:07:33
- * @LastEditors: wangguixing 1163260785@qq.com
- * @LastEditTime: 2023-03-29 17:07:16
- * @FilePath: \myPages\.eslintrc.js
- * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ * @LastEditors: wangguixing
+ * @LastEditTime: 2023-04-01 15:00:13
+ * @FilePath: \.eslintrc.js
+ * @Description: 注明出处即可
+ * Copyright 2023 OBKoro1, All Rights Reserved.
+ * 2023-03-06 16:07:33
  */
+
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const path = require('path');
 
@@ -76,7 +79,10 @@ module.exports = {
     'no-console': process.env.NODE_ENV === 'production' ? 2 : 0,
     'no-param-reassign': 0,
     'prefer-regex-literals': 0,
+    'import/no-cycle': 0,
     'import/no-extraneous-dependencies': 0,
     'import/prefer-default-export': 'off',
+    'no-shadow': 'off',
+    '@typescript-eslint/no-shadow': 'error',
   },
 };

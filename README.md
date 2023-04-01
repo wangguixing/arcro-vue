@@ -15,3 +15,10 @@
 - vite-plugin-cdn-import （cdn引入）
 - @vitejs/plugin-legacy  (传统浏览器支持)--->对vue3来说无意义，Proxy决定了vue3不支持ie11，但对react或其他可通过此实现支持
 - mockjs、vite-plugin-mock
+
+###  踩坑记录
+1. enmu type ts作用域与js作用域冲突
+   ```
+    'no-shadow': 'off',
+    '@typescript-eslint/no-shadow': 'error',
+   ```

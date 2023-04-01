@@ -1,20 +1,24 @@
 /*
- * @Author: wangguixing 1163260785@qq.com
- * @Date: 2023-03-30 13:59:28
- * @LastEditors: wangguixing 1163260785@qq.com
- * @LastEditTime: 2023-03-31 09:33:09
- * @FilePath: \arcro-vue\src\views\login\index.tsx
- * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ * @Author: wangguixing
+ * @Date: 2023-03-30 18:08:10
+ * @LastEditors: wangguixing
+ * @LastEditTime: 2023-04-01 15:39:26
+ * @FilePath: \src\views\login\index.tsx
+ * @Description: 注明出处即可
+ * Copyright 2023 OBKoro1, All Rights Reserved.
+ * 2023-03-30 18:08:10
  */
+
 import { defineComponent, reactive, ref, onBeforeUnmount } from 'vue';
 import { useRouter } from 'vue-router';
 import { Message } from '@arco-design/web-vue';
 import { useStorage } from '@vueuse/core';
 import { useUserStore } from '@/store';
-import useLoading from '@/hooks/loading';
+import useLoading from '@/hooks/useLoading';
 import useEventBus from '@/hooks/eventBus';
 import type { ValidatedError } from '@arco-design/web-vue/es/form/interface';
 import LoginIconLogo from '@/assets/images/login/icon-logo.png';
+import useNotify from '@/hooks/useNotify';
 import type { LoginData } from './types';
 import './index.less';
 
@@ -50,21 +54,15 @@ export default defineComponent({
         console.log(11);
         setLoading(true);
         try {
-          // await userStore.login(values as LoginData);
-          // const { redirect, ...othersQuery } = router.currentRoute.value.query;
-          // router.push({
-          //   name: (redirect as string) || 'Workplace',
-          //   query: {
-          //     ...othersQuery,
-          //   },
-          // });
-          Message.success('登录成功');
-          // const { rememberPassword } = loginConfig.value;
-          // const { username, password } = values;
-          // // 实际生产环境需要进行加密存储。
-          // // The actual production environment requires encrypted storage.
-          // loginConfig.value.username = rememberPassword ? username : '';
-          // loginConfig.value.password = rememberPassword ? password : '';
+          await userStore.login(values as LoginData);
+          window.location.replace('/dashboard');
+          useNotify({ type: 'success', content: '登陆成功' });
+          const { rememberPassword } = loginConfig.value;
+          const { username, password } = values;
+          // 实际生产环境需要进行加密存储。
+          // The actual production environment requires encrypted storage.
+          loginConfig.value.username = rememberPassword ? username : '';
+          loginConfig.value.password = rememberPassword ? password : '';
         } catch (err) {
           errorMessage.value = (err as Error).message;
         } finally {

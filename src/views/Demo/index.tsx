@@ -1,17 +1,28 @@
 /*
- * @Author: wangguixing 1163260785@qq.com
- * @Date: 2023-03-30 14:40:12
- * @LastEditors: wangguixing 1163260785@qq.com
- * @LastEditTime: 2023-03-30 14:40:34
- * @FilePath: \arcro-vue\src\views\Demo\index.tsx
- * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ * @Author: wangguixing
+ * @Date: 2023-03-30 18:08:10
+ * @LastEditors: wangguixing
+ * @LastEditTime: 2023-04-01 13:06:45
+ * @FilePath: \src\views\Demo\index.tsx
+ * @Description: 注明出处即可
+ * Copyright 2023 OBKoro1, All Rights Reserved.
+ * 2023-03-30 18:08:10
  */
+
 import { defineComponent } from 'vue';
+import ElNotification from '@/hooks/useNotify';
 
 export default defineComponent({
   name: 'Demo',
 
   setup() {
-    return () => <>12312312demo</>;
+    const get = () => {
+      ElNotification({ type: 'error', duration: 2, content: '12321312312' });
+    };
+    return () => (
+      <a-button type="primary" onClick={get}>
+        Primary
+      </a-button>
+    );
   },
 });

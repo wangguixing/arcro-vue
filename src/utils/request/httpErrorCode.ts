@@ -1,15 +1,18 @@
 /*
- * @Author: wangguixing 1163260785@qq.com
- * @Date: 2023-03-13 14:41:15
- * @LastEditors: wangguixing 1163260785@qq.com
- * @LastEditTime: 2023-03-31 09:37:54
- * @FilePath: \low-code-ui\src\utils\constant\httpErrorCode.js
- * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
+ * @Author: wangguixing
+ * @Date: 2023-03-31 09:37:36
+ * @LastEditors: wangguixing
+ * @LastEditTime: 2023-04-01 13:56:23
+ * @FilePath: \src\utils\config\httpErrorCode.ts
+ * @Description: 注明出处即可
+ * Copyright 2023 OBKoro1, All Rights Reserved.
+ * 2023-03-31 09:37:36
  */
+
 export default {
-  // 100: '客户端应继续其请求',
-  // 101: '服务器根据客户端的请求切换协议',
-  // 200: '请求成功',
+  100: '客户端应继续其请求',
+  101: '服务器根据客户端的请求切换协议',
+  200: '请求成功',
   301: '请求路径错误？',
   304: '请求资源未修改',
   305: '未使用代理',

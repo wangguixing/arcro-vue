@@ -1,27 +1,43 @@
 /*
  * @Author: wangguixing 1163260785@qq.com
  * @Date: 2023-03-13 17:08:47
- * @LastEditors: wangguixing 1163260785@qq.com
- * @LastEditTime: 2023-03-13 17:08:53
- * @FilePath: \arcro-vue\src\utils\auth.ts
+ * @LastEditors: wangguixing
+ * @LastEditTime: 2023-04-01 14:03:17
+ * @FilePath: \src\utils\auth.ts
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
-const TOKEN_KEY = 'token';
+import Cookies from 'js-cookie';
+
+const TOKEN_KEY = 'tokenName';
+const TOKEN_VALUE = 'tokenValue';
 
 const isLogin = () => {
-  return !!localStorage.getItem(TOKEN_KEY);
+  return !!Cookies.get(TOKEN_KEY);
 };
+function getTokenName() {
+  return Cookies.get(TOKEN_KEY);
+}
 
-const getToken = () => {
-  return localStorage.getItem(TOKEN_KEY);
+function getTokenValue() {
+  return Cookies.get(TOKEN_VALUE);
+}
+
+function setTokenName(name: string) {
+  return Cookies.set(TOKEN_KEY, name);
+}
+
+function setTokenValue(value: string) {
+  return Cookies.set(TOKEN_VALUE, value);
+}
+
+function removeToken() {
+  return Cookies.remove(TOKEN_VALUE);
+}
+export {
+  isLogin,
+  getTokenName,
+  getTokenValue,
+  setTokenValue,
+  setTokenName,
+  removeToken,
 };
-
-const setToken = (token: string) => {
-  localStorage.setItem(TOKEN_KEY, token);
-};
-
-const clearToken = () => {
-  localStorage.removeItem(TOKEN_KEY);
-};
-
-export { isLogin, getToken, setToken, clearToken };
