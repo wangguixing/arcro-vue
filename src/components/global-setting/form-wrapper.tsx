@@ -1,14 +1,14 @@
 /*
  * @Author: wangguixing 1163260785@qq.com
  * @Date: 2023-03-29 18:08:10
- * @LastEditors: wangguixing 1163260785@qq.com
- * @LastEditTime: 2023-03-30 17:00:23
- * @FilePath: \arcro-vue\src\layout\components\global-setting\form-wrapper.tsx
+ * @LastEditors: wangguixing
+ * @LastEditTime: 2023-04-02 22:17:18
+ * @FilePath: \src\components\global-setting\form-wrapper.tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
-import { defineComponent, toRefs } from 'vue';
+import { defineComponent } from 'vue';
 import type { PropType } from 'vue';
-import type { OptionsProp } from './type.ts';
+import type { OptionsProp } from './type.js';
 
 export default defineComponent({
   props: {
@@ -34,21 +34,20 @@ export default defineComponent({
       });
     };
     return () => {
-      const { type, defaultValue } = toRefs(props);
       return (
         <>
-          {type.value === 'number' ? (
+          {props.type === 'number' ? (
             <a-input-number
               style={{ width: '80px' }}
               size="small"
               onChange={handleChange}
-              default-value={defaultValue}
+              default-value={props.defaultValue}
             />
           ) : (
             <a-switch
               size="small"
               onChange={handleChange}
-              default-checked={defaultValue}
+              default-checked={props.defaultValue}
             />
           )}
         </>

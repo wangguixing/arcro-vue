@@ -1,12 +1,13 @@
-import { defineComponent, Fragment } from 'vue';
+import { defineComponent } from 'vue';
 import { useAppStore } from '@/store';
-
 import type { PropType } from 'vue';
-import type { OptionsProp } from './type.ts';
+import FormWrapper from './form-wrapper';
+import type { OptionsProp } from './type.js';
 import './index.less';
 
 export default defineComponent({
   name: 'GlobalSettingBlock',
+  components: { FormWrapper },
   props: {
     title: {
       type: String as PropType<string>,
@@ -19,7 +20,7 @@ export default defineComponent({
       },
     },
   },
-  setup(props, ctx) {
+  setup(props) {
     const appStore = useAppStore();
     const handleChange = async ({
       key,
@@ -42,22 +43,21 @@ export default defineComponent({
       appStore.updateSettings({ [key]: value });
     };
     return () => {
-      const { title, options } = props;
       return (
         <>
-          <div class="block">
-            <h5 class="title">{{ title }}</h5>
-            {options.map((optItem) => {
+          <div class="global-setting-block">
+            <h5 class="title">{props.title}</h5>
+            {props.options.map((optItem) => {
               return (
-                <Fragment>
-                  <span>optItem.name</span>
+                <div class="global-setting-form-wrapper">
+                  <span>{optItem.name}</span>
                   <form-wrapper
                     type={optItem.type || 'switch'}
                     name={optItem.key}
                     default-value={optItem.defaultValue}
                     onInputChange={handleChange}
                   />
-                </Fragment>
+                </div>
               );
             })}
           </div>

@@ -1,23 +1,33 @@
 /*
  * @Author: wangguixing 1163260785@qq.com
  * @Date: 2023-03-13 17:00:18
- * @LastEditors: wangguixing 1163260785@qq.com
- * @LastEditTime: 2023-03-30 18:07:50
- * @FilePath: \arcro-vue\src\layout\index.tsx
+ * @LastEditors: wangguixing
+ * @LastEditTime: 2023-04-02 23:01:21
+ * @FilePath: \src\layout\index.tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
-import { ref, computed, watch, provide, onMounted, defineComponent } from 'vue';
+import {
+  ref,
+  computed,
+  watch,
+  provide,
+  onMounted,
+  defineComponent,
+  Fragment,
+} from 'vue';
 import { useRouter, useRoute } from 'vue-router';
 import { useAppStore, useUserStore } from '@/store/index';
-import NavBar from '@/layout/components/navbar/index.vue';
-// import Menu from '@/layout/components/menu/index.tsx';
-// import Footer from '@/layout/components/footer/index.tsx';
-import TabBar from '@/layout/components/tab-bar/index.vue';
+import NavBar from '@/layout/components/navbar/index';
+import Menu from '@/layout/components/menu/index';
+import Footer from '@/layout/components/footer/index';
+import TabBar from '@/layout/components/tab-bar/index';
 import usePermission from '@/hooks/permission';
 import useResponsive from '@/hooks/responsive';
 import PageLayout from './components/contentLayout/page-layout';
+import './index.less';
 
 export default defineComponent({
+  name: 'PageLayout',
   components: {
     NavBar,
     TabBar,
@@ -71,5 +81,59 @@ export default defineComponent({
     onMounted(() => {
       isInit.value = true;
     });
+    return () => (
+      <Fragment>
+        <a-layout class={{ mobile: appStore.hideMenu, layout: true }}>
+          {navbar.value ? (
+            <div class="layout-navbar">
+              <NavBar />
+            </div>
+          ) : (
+            ''
+          )}
+          <a-layout>
+            <a-layout>
+              {renderMenu.value && hideMenu && (
+                <a-layout-sider
+                  class="layout-sider"
+                  breakpoint="xl"
+                  collapsed={collapsed.value}
+                  collapsible={true}
+                  width={menuWidth.value}
+                  style={{ paddingTop: navbar.value ? '60px' : '' }}
+                  hide-trigger={true}
+                  onCollapse={setCollapsed}
+                >
+                  <div class="menu-wrapper">
+                    <Menu />
+                  </div>
+                </a-layout-sider>
+              )}
+
+              {hideMenu.value && (
+                <a-drawer
+                  visible={drawerVisible}
+                  placement="left"
+                  footer={false}
+                  mask-closable
+                  closable={false}
+                  onCancel={drawerCancel}
+                >
+                  <Menu />
+                </a-drawer>
+              )}
+
+              <a-layout class="layout-content" style={paddingStyle}>
+                {appStore.tabBar && <TabBar />}
+                <a-layout-content>
+                  <PageLayout />
+                </a-layout-content>
+                {footer.value && <Footer />}
+              </a-layout>
+            </a-layout>
+          </a-layout>
+        </a-layout>
+      </Fragment>
+    );
   },
 });

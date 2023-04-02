@@ -19,6 +19,33 @@
 ###  踩坑记录
 1. enmu type ts作用域与js作用域冲突
    ```
-    'no-shadow': 'off',
-    '@typescript-eslint/no-shadow': 'error',
+      'no-shadow': 'off',
+      '@typescript-eslint/no-shadow': 'error',
    ```
+2. tsx中的transtion、KeepAlive、动态组件创建
+  ```
+      import { Transition, KeepAlive, createVNode } from 'vue';
+      <Transition name="fade" mode="out-in">
+        <div key={route.path} style={{ height: '100%' }}>
+          {route.meta.ignoreCache ? (
+            createVNode(Component)
+          ) : (
+            <KeepAlive include={cacheList.value}>
+              {createVNode(Component)}
+            </KeepAlive>
+          )}
+        </div>
+      </Transition>
+  ```
+3. v-slots两种写法
+    ```
+    举例1：
+       <a-button v-slot={{ default:() => VNode, title:() => VNode }} />
+    举例2：
+       <a-button v-slot={{}}>
+       {{
+          default: () =>  VNode,
+          title: () =>  VNode,
+       }}
+       </a-button>
+    ```

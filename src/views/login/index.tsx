@@ -2,7 +2,7 @@
  * @Author: wangguixing
  * @Date: 2023-03-30 18:08:10
  * @LastEditors: wangguixing
- * @LastEditTime: 2023-04-01 15:39:26
+ * @LastEditTime: 2023-04-01 23:00:01
  * @FilePath: \src\views\login\index.tsx
  * @Description: 注明出处即可
  * Copyright 2023 OBKoro1, All Rights Reserved.
@@ -10,9 +10,8 @@
  */
 
 import { defineComponent, reactive, ref, onBeforeUnmount } from 'vue';
-import { useRouter } from 'vue-router';
-import { Message } from '@arco-design/web-vue';
 import { useStorage } from '@vueuse/core';
+import { useRouter } from 'vue-router';
 import { useUserStore } from '@/store';
 import useLoading from '@/hooks/useLoading';
 import useEventBus from '@/hooks/eventBus';
@@ -51,12 +50,21 @@ export default defineComponent({
     }) => {
       if (loading.value) return;
       if (!errors) {
-        console.log(11);
         setLoading(true);
         try {
           await userStore.login(values as LoginData);
-          window.location.replace('/dashboard');
           useNotify({ type: 'success', content: '登陆成功' });
+          const { redirect, ...othersQuery } = router.currentRoute.value.query;
+          console.log(
+            'router.currentRoute.value.query :>>>>>>>',
+            router.currentRoute.value.query
+          );
+          router.push({
+            name: (redirect as string) || 'Workplace',
+            query: {
+              ...othersQuery,
+            },
+          });
           const { rememberPassword } = loginConfig.value;
           const { username, password } = values;
           // 实际生产环境需要进行加密存储。
@@ -64,6 +72,8 @@ export default defineComponent({
           loginConfig.value.username = rememberPassword ? username : '';
           loginConfig.value.password = rememberPassword ? password : '';
         } catch (err) {
+          console.log(err);
+
           errorMessage.value = (err as Error).message;
         } finally {
           setLoading(false);

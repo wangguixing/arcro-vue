@@ -1,9 +1,9 @@
 /*
  * @Author: wangguixing 1163260785@qq.com
  * @Date: 2023-03-13 17:00:49
- * @LastEditors: wangguixing 1163260785@qq.com
- * @LastEditTime: 2023-03-30 11:50:15
- * @FilePath: \arcro-vue\src\layout\components\message-box\index.tsx
+ * @LastEditors: wangguixing
+ * @LastEditTime: 2023-04-02 22:23:21
+ * @FilePath: \src\layout\components\message-box\index.tsx
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
 import { defineComponent, ref, reactive, toRefs } from 'vue';
@@ -61,8 +61,7 @@ export default defineComponent({
                     }}
                     {!messageData.renderList.length && (
                       <a-result
-                        v-if="!renderList.length"
-                        status="404"
+                        status={404}
                         v-slots={{
                           subTitle: () => '暂无内容',
                         }}

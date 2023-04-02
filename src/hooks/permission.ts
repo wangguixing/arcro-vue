@@ -2,7 +2,7 @@
  * @Author: wangguixing
  * @Date: 2023-03-13 17:57:25
  * @LastEditors: wangguixing
- * @LastEditTime: 2023-04-01 13:05:43
+ * @LastEditTime: 2023-04-01 21:10:04
  * @FilePath: \src\hooks\permission.ts
  * @Description: 注明出处即可
  * Copyright 2023 OBKoro1, All Rights Reserved.
@@ -10,16 +10,17 @@
  */
 
 import type { RouteLocationNormalized, RouteRecordRaw } from 'vue-router';
-// import { useUserStore } from '@/store';
+import { useUserStore } from '@/store';
 
 export default function usePermission() {
-  // const userStore = useUserStore();
+  const userStore = useUserStore();
   return {
     accessRouter(route: RouteLocationNormalized | RouteRecordRaw) {
       return (
-        !route.meta?.requiresAuth || !route.meta?.roles
-        // route.meta?.roles?.includes('*') ||
-        // route.meta?.roles?.includes(userStore.role)
+        !route.meta?.requiresAuth ||
+        !route.meta?.roles ||
+        route.meta?.roles?.includes('*') ||
+        route.meta?.roles?.includes(userStore.role)
       );
     },
     findFirstPermissionRoute(_routers: any, role = 'admin') {

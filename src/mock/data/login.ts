@@ -35,10 +35,7 @@ export default {
     sysFlag: 0,
     sysTheme: null,
     telephone: null,
-    tokenInfo: {
-      tokenName: 'token',
-      tokenValue: 'f788bd14187c4735a5331e44a2aa558a',
-    },
+    token: 'f788bd14187c4735a5331e44a2aa558a',
     urgentContacts: null,
     urgentTelephone: null,
     workStatus: 2,

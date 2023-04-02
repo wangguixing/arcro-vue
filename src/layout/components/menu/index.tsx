@@ -68,6 +68,8 @@ export default defineComponent({
       return result;
     };
     listenerRouteChange((newRoute) => {
+      console.log('menu-newRoute', newRoute);
+
       const { requiresAuth, activeMenu, hideInMenu } = newRoute.meta;
       if (requiresAuth && (!hideInMenu || activeMenu)) {
         const menuOpenKeys = findMenuOpenKeys(
@@ -124,20 +126,22 @@ export default defineComponent({
     };
 
     return () => (
-      <a-menu
-        mode={topMenu.value ? 'horizontal' : 'vertical'}
-        v-model:collapsed={collapsed.value}
-        v-model:open-keys={openKeys.value}
-        show-collapse-button={appStore.device !== 'mobile'}
-        auto-open={false}
-        selected-keys={selectedKey.value}
-        auto-open-selected={true}
-        level-indent={34}
-        style="height: 100%;width:100%;"
-        onCollapse={setCollapse}
-      >
-        {renderSubMenu()}
-      </a-menu>
+      <div class="layout-menu">
+        <a-menu
+          mode={topMenu.value ? 'horizontal' : 'vertical'}
+          modelValue:collapsed={collapsed.value}
+          modelValue:open-keys={openKeys.value}
+          show-collapse-button={appStore.device !== 'mobile'}
+          auto-open={false}
+          selected-keys={selectedKey.value}
+          auto-open-selected={true}
+          level-indent={34}
+          style="height: 100%;width:100%;"
+          onCollapse={setCollapse}
+        >
+          {renderSubMenu()}
+        </a-menu>
+      </div>
     );
   },
 });

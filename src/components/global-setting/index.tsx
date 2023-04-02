@@ -13,28 +13,28 @@ export default defineComponent({
     const { copy } = useClipboard();
     const visible = computed(() => appStore.globalSettings);
     const contentOpts = computed(() => [
-      { name: '导航栏', key: 'navbar', defaultVal: appStore.navbar },
+      { name: '导航栏', key: 'navbar', defaultValue: appStore.navbar },
       {
         name: '菜单栏',
         key: 'menu',
-        defaultVal: appStore.menu,
+        defaultValue: appStore.menu,
       },
       {
         name: '顶部菜单栏',
         key: 'topMenu',
-        defaultVal: appStore.topMenu,
+        defaultValue: appStore.topMenu,
       },
-      { name: '底部', key: 'footer', defaultVal: appStore.footer },
-      { name: 'settings.tabBar', key: 'tabBar', defaultVal: appStore.tabBar },
+      { name: '底部', key: 'footer', defaultValue: appStore.footer },
+      { name: 'settings.tabBar', key: 'tabBar', defaultValue: appStore.tabBar },
       {
         name: '菜单来源后台',
         key: 'menuFromServer',
-        defaultVal: appStore.menuFromServer,
+        defaultValue: appStore.menuFromServer,
       },
       {
         name: '菜单栏宽度',
         key: 'menuWidth',
-        defaultVal: appStore.menuWidth,
+        defaultValue: appStore.menuWidth,
         type: 'number',
       },
     ]);
@@ -42,7 +42,7 @@ export default defineComponent({
       {
         name: '色弱模式',
         key: 'colorWeak',
-        defaultVal: appStore.colorWeak,
+        defaultValue: appStore.colorWeak,
       },
     ]);
     const cancel = () => {
@@ -58,37 +58,34 @@ export default defineComponent({
       appStore.updateSettings({ globalSettings: true });
     };
     return () => (
-      <>
+      <div class="global-setting">
         <Fragment>
           {appStore.navbar ? (
             <div class="fixed-settings" onClick={setVisible}>
-              <a-button type="primary">
-                {{
-                  icon: () => <icon-settings />,
-                }}
-              </a-button>
+              <a-button
+                type="primary"
+                v-slots={{ icon: () => <icon-settings /> }}
+              ></a-button>
             </div>
           ) : (
             ''
           )}
         </Fragment>
         <a-drawer
-          width="300"
+          width={300}
           unmount-on-close
-          visible={visible}
+          visible={visible.value}
           cancel-text="取消"
           ok-text="复制配置"
           onOk={copySettings}
           onCancel={cancel}
+          v-slots={{ title: () => '页面配置' }}
         >
-          {{
-            title: () => '页面配置',
-          }}
-          <GlobalSettingBlock options={unref(contentOpts)} title="设置" />
-          <GlobalSettingBlock options={unref(othersOpts)} title="其他设置" />
+          <GlobalSettingBlock options={contentOpts.value} title="设置" />
+          <GlobalSettingBlock options={othersOpts.value} title="其他设置" />
           <a-alert>替换到 settings.json 中即可</a-alert>
         </a-drawer>
-      </>
+      </div>
     );
   },
 });
