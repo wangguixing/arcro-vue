@@ -11,6 +11,29 @@
 - **Arco Design**  -  字节翻版ant-design，vue组件库。
 - **@vueuse/core** -  实用函数集
 - **mitt** -  mitt封装eventBus hooks
+### 用法
+- npm run
+```bash
+npm:
+$ npm run prepare
+$ npm i
+$ npm run dev
+yarn:
+$ yarn prepare
+$ yarn
+$ yarn dev
+
+代码提交:
+$ npm run lit-staged
+$ yarn lint-staged
+
+风格修复完成后:
+
+$ git commit -m "fix(): bug修复"
+
+详细参照commitlint.config
+```
+
 ### 已安装三方组件库
 - @vueuse/core（实用函数集）
 - @arco-design/web-vue (字节)
