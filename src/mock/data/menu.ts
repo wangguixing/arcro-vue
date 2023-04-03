@@ -5,7 +5,7 @@ export default {
       path: '/dashboard',
       name: 'dashboard',
       meta: {
-        locale: 'menu.server.dashboard',
+        title: '仪表盘',
         requiresAuth: true,
         icon: 'icon-dashboard',
         order: 1,
@@ -15,15 +15,7 @@ export default {
           path: 'workplace',
           name: 'Workplace',
           meta: {
-            locale: 'menu.server.workplace',
-            requiresAuth: true,
-          },
-        },
-        {
-          path: 'https://arco.design',
-          name: 'arcoWebsite',
-          meta: {
-            locale: 'menu.arcoWebsite',
+            title: '工作台',
             requiresAuth: true,
           },
         },

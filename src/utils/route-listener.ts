@@ -21,7 +21,6 @@ const key = Symbol('ROUTE_CHANGE');
 let latestRoute: RouteLocationNormalized;
 
 export function setRouteEmitter(to: RouteLocationNormalized) {
-  console.log('setRouteEmitter :>>>>>>>', to);
   emitter.emit(key, to);
   latestRoute = to;
 }
@@ -31,9 +30,7 @@ export function listenerRouteChange(
   immediate = true
 ) {
   emitter.on(key, handler as Handler);
-  console.log('latestRoute :>>>>>>>', latestRoute);
   if (immediate && latestRoute) {
-    console.log('latestRoute :>>>>>>>', latestRoute);
     handler(latestRoute);
   }
 }

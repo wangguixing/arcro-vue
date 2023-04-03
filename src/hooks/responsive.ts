@@ -5,7 +5,7 @@
  * @LastEditTime: 2023-04-01 13:05:56
  * @FilePath: \src\hooks\responsive.ts
  * @Description: 注明出处即可
- * Copyright 2023 OBKoro1, All Rights Reserved.
+ * Copyright 2023 wangguixing, All Rights Reserved.
  * 2023-03-13 17:57:39
  */
 

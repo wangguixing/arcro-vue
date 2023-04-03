@@ -29,7 +29,6 @@ export default defineComponent({
       }
     );
     listenerRouteChange((route: RouteLocationNormalized) => {
-      console.log('listenerRouteChange', route);
       if (
         !route.meta.noAffix &&
         !tagList.value.some((tag) => tag.fullPath === route.fullPath)
@@ -44,7 +43,7 @@ export default defineComponent({
     return () => (
       <>
         <div class="tab-bar-container">
-          <a-affix ref="affixRef" offset-top={offsetTop.value}>
+          <a-affix ref={affixRef} offset-top={offsetTop.value}>
             <div class="tab-bar-box">
               <div class="tab-bar-scroll">
                 <div class="tags-wrap">

@@ -12,7 +12,7 @@ const TOKEN_KEY = 'tokenName';
 const TOKEN_VALUE = 'tokenValue';
 
 const isLogin = () => {
-  return !!Cookies.get(TOKEN_KEY);
+  return !!Cookies.get(TOKEN_VALUE);
 };
 function getTokenName() {
   return Cookies.get(TOKEN_KEY);

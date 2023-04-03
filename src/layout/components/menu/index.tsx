@@ -68,8 +68,6 @@ export default defineComponent({
       return result;
     };
     listenerRouteChange((newRoute) => {
-      console.log('menu-newRoute', newRoute);
-
       const { requiresAuth, activeMenu, hideInMenu } = newRoute.meta;
       if (requiresAuth && (!hideInMenu || activeMenu)) {
         const menuOpenKeys = findMenuOpenKeys(
@@ -103,7 +101,7 @@ export default defineComponent({
                   key={element?.name}
                   v-slots={{
                     icon,
-                    title: () => h(compile('locale--f')),
+                    title: () => element?.meta?.title,
                   }}
                 >
                   {travel(element?.children)}
@@ -114,7 +112,7 @@ export default defineComponent({
                   v-slots={{ icon }}
                   onClick={() => goto(element)}
                 >
-                  locale--f
+                  {element?.meta?.title}
                 </a-menu-item>
               );
             nodes.push(node as never);

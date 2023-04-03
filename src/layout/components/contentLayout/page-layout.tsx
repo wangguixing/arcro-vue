@@ -2,10 +2,10 @@
  * @Author: wangguixing
  * @Date: 2023-03-30 18:08:10
  * @LastEditors: wangguixing
- * @LastEditTime: 2023-04-02 23:28:18
+ * @LastEditTime: 2023-04-03 22:01:38
  * @FilePath: \src\layout\components\contentLayout\page-layout.tsx
  * @Description: 注明出处即可
- * Copyright 2023 OBKoro1, All Rights Reserved.
+ * Copyright 2023 wangguixing, All Rights Reserved.
  * 2023-03-30 18:08:10
  */
 
@@ -40,12 +40,15 @@ export default defineComponent({
             }) => {
               return (
                 <Transition name="fade" mode="out-in">
-                  <div key={route.path} style={{ height: '100%' }}>
+                  <div
+                    key={route.path}
+                    style={{ height: '100%', padding: '20px' }}
+                  >
                     {route.meta.ignoreCache ? (
-                      createVNode(Component)
+                      createVNode(Component, { key: `${route.fullPath}` })
                     ) : (
                       <KeepAlive include={cacheList.value}>
-                        {createVNode(Component)}
+                        {createVNode(Component, { key: `${route.fullPath}` })}
                       </KeepAlive>
                     )}
                   </div>

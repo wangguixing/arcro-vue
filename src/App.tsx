@@ -2,16 +2,16 @@
  * @Author: wangguixing
  * @Date: 2023-03-05 16:08:45
  * @LastEditors: wangguixing
- * @LastEditTime: 2023-04-02 23:18:44
+ * @LastEditTime: 2023-04-03 16:47:18
  * @FilePath: \src\App.tsx
  * @Description: 注明出处即可
- * Copyright 2023 OBKoro1, All Rights Reserved.
+ * Copyright 2023 wangguixing, All Rights Reserved.
  * 2023-03-05 16:08:45
  */
 
 import { defineComponent, onMounted } from 'vue';
 import useEventBus from '@/hooks/eventBus';
-// import GlobalSetting from '@/components/global-setting';
+import GlobalSetting from '@/components/global-setting';
 
 export default defineComponent({
   name: 'App',
@@ -27,7 +27,7 @@ export default defineComponent({
     return () => (
       <a-config-provider>
         <router-view />
-        {/* <GlobalSetting /> */}
+        <GlobalSetting />
       </a-config-provider>
     );
   },

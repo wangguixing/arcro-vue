@@ -2,27 +2,25 @@
  * @Author: wangguixing
  * @Date: 2023-03-30 18:08:10
  * @LastEditors: wangguixing
- * @LastEditTime: 2023-04-02 22:25:29
+ * @LastEditTime: 2023-04-03 22:00:17
  * @FilePath: \src\layout\components\navbar\index.tsx
  * @Description: 注明出处即可
- * Copyright 2023 OBKoro1, All Rights Reserved.
+ * Copyright 2023 wangguixing, All Rights Reserved.
  * 2023-03-30 18:08:10
  */
 
 import { defineComponent, computed, ref, inject } from 'vue';
-import { Message } from '@arco-design/web-vue';
 import { useDark, useToggle, useFullscreen } from '@vueuse/core';
 import useUser from '@/hooks/user';
 import { useAppStore, useUserStore } from '@/store/index';
-import { useRouter } from 'vue-router';
 import Menu from '../menu/index';
+import MessageBox from '../message-box';
 import './index.less';
 
 export default defineComponent({
   setup() {
     const appStore = useAppStore();
     const userStore = useUserStore();
-    const router = useRouter();
     const { logout } = useUser();
     const { isFullscreen, toggle: toggleFullScreen } = useFullscreen();
     const avatar = computed(() => {
@@ -51,7 +49,7 @@ export default defineComponent({
       appStore.updateSettings({ globalSettings: true });
     };
     const refBtn = ref();
-    const triggerBtn = ref();
+    // const triggerBtn = ref();
     const setPopoverVisible = () => {
       const event = new MouseEvent('click', {
         view: window,
@@ -63,18 +61,18 @@ export default defineComponent({
     const handleLogout = () => {
       logout();
     };
-    const setDropDownVisible = () => {
-      const event = new MouseEvent('click', {
-        view: window,
-        bubbles: true,
-        cancelable: true,
-      });
-      triggerBtn.value.dispatchEvent(event);
-    };
-    const switchRoles = async () => {
-      const res = await userStore.switchRoles();
-      Message.success(res as string);
-    };
+    // const setDropDownVisible = () => {
+    //   const event = new MouseEvent('click', {
+    //     view: window,
+    //     bubbles: true,
+    //     cancelable: true,
+    //   });
+    //   triggerBtn.value.dispatchEvent(event);
+    // };
+    // const switchRoles = async () => {
+    //   const res = await userStore.switchRoles();
+    //   Message.success(res as string);
+    // };
     const toggleDrawerMenu = inject('toggleDrawerMenu') as () => void;
     return () => {
       return (
@@ -90,7 +88,7 @@ export default defineComponent({
                   style={{ margin: 0, fontSize: '18px' }}
                   heading={5}
                 >
-                  Arco Pro
+                  arcro-vue
                 </a-typography-title>
 
                 {!topMenu.value && appStore.device === 'mobile' ? (
@@ -105,29 +103,6 @@ export default defineComponent({
             </div>
             <div class="center-side">{topMenu.value && <Menu />}</div>
             <ul class="right-side">
-              <li>
-                <a-tooltip content="搜索">
-                  <a-button class="nav-btn" type="outline" shape="'circle'">
-                    {{
-                      icon: () => <icon-search />,
-                    }}
-                  </a-button>
-                </a-tooltip>
-              </li>
-              <li>
-                <a-tooltip content="语言">
-                  <a-button
-                    class="nav-btn"
-                    type="outline"
-                    shape="'circle'"
-                    onClick={setDropDownVisible}
-                  >
-                    {{
-                      icon: () => <icon-language />,
-                    }}
-                  </a-button>
-                </a-tooltip>
-              </li>
               <li>
                 <a-tooltip
                   content={
@@ -173,15 +148,15 @@ export default defineComponent({
                   arrow-style={{ display: 'none' }}
                   content-style={{ padding: 0, minWidth: '400px' }}
                   content-class="message-popover"
-                  v-slots={{ content: () => <message-box /> }}
+                  v-slots={{ content: () => <MessageBox /> }}
                 >
-                  <div ref="refBtn" class="ref-btn"></div>
+                  <div ref={refBtn} class="ref-btn"></div>
                 </a-popover>
               </li>
               <li>
                 <a-tooltip
                   content={
-                    isFullscreen ? '点击退出全屏模式' : '点击切换全屏模式'
+                    isFullscreen.value ? '点击退出全屏模式' : '点击切换全屏模式'
                   }
                 >
                   <a-button
@@ -202,7 +177,7 @@ export default defineComponent({
                 </a-tooltip>
               </li>
               <li>
-                <a-tooltip content="标题">
+                <a-tooltip content="设置">
                   <a-button
                     class="nav-btn"
                     type="outline"
@@ -216,46 +191,26 @@ export default defineComponent({
                 </a-tooltip>
               </li>
               <li>
-                <a-dropdown
-                  trigger="click"
-                  v-slots={{
-                    content: () => (
-                      <>
-                        <a-doption>
-                          <a-space onClick={switchRoles}>
-                            <icon-tag />
-                            <span> 切换角色 </span>
-                          </a-space>
-                        </a-doption>
-                        <a-doption>
-                          <a-space onClick={router.push({ name: 'Info' })}>
-                            <icon-user />
-                            <span> 用户中心 </span>
-                          </a-space>
-                        </a-doption>
-                        <a-doption>
-                          <a-space onClick={router.push({ name: 'Setting' })}>
-                            <icon-settings />
-                            <span> 用户设置 </span>
-                          </a-space>
-                        </a-doption>
-                        <a-doption>
-                          <a-space onClick={handleLogout}>
-                            <icon-export />
-                            <span> 登出 </span>
-                          </a-space>
-                        </a-doption>
-                      </>
-                    ),
-                  }}
+                <a-avatar
+                  size={32}
+                  style={{ marginRight: '8px', cursor: 'pointer' }}
                 >
-                  <a-avatar
-                    size={32}
-                    style={{ marginRight: '8px', cursor: 'pointer' }}
+                  <img alt="avatar" src={avatar.value} />
+                </a-avatar>
+              </li>
+              <li>
+                <a-tooltip content="登出">
+                  <a-button
+                    class="nav-btn"
+                    type="outline"
+                    shape="circle"
+                    onClick={handleLogout}
                   >
-                    <img alt="avatar" src={avatar.value} />
-                  </a-avatar>
-                </a-dropdown>
+                    {{
+                      icon: () => <icon-export />,
+                    }}
+                  </a-button>
+                </a-tooltip>
               </li>
             </ul>
           </div>

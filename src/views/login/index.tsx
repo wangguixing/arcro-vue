@@ -2,10 +2,10 @@
  * @Author: wangguixing
  * @Date: 2023-03-30 18:08:10
  * @LastEditors: wangguixing
- * @LastEditTime: 2023-04-01 23:00:01
+ * @LastEditTime: 2023-04-03 22:00:40
  * @FilePath: \src\views\login\index.tsx
  * @Description: 注明出处即可
- * Copyright 2023 OBKoro1, All Rights Reserved.
+ * Copyright 2023 wangguixing, All Rights Reserved.
  * 2023-03-30 18:08:10
  */
 
@@ -29,6 +29,7 @@ export default defineComponent({
     const { busEmit, busOff } = useEventBus();
     const router = useRouter();
     const errorMessage = ref('');
+    const loginForm = ref();
     const { loading, setLoading } = useLoading();
     const userStore = useUserStore();
     const loginConfig = useStorage('login-config', {
@@ -55,10 +56,6 @@ export default defineComponent({
           await userStore.login(values as LoginData);
           useNotify({ type: 'success', content: '登陆成功' });
           const { redirect, ...othersQuery } = router.currentRoute.value.query;
-          console.log(
-            'router.currentRoute.value.query :>>>>>>>',
-            router.currentRoute.value.query
-          );
           router.push({
             name: (redirect as string) || 'Workplace',
             query: {
@@ -72,8 +69,6 @@ export default defineComponent({
           loginConfig.value.username = rememberPassword ? username : '';
           loginConfig.value.password = rememberPassword ? password : '';
         } catch (err) {
-          console.log(err);
-
           errorMessage.value = (err as Error).message;
         } finally {
           setLoading(false);
@@ -92,7 +87,7 @@ export default defineComponent({
       return (
         <div class="login-page">
           <a-form
-            ref="loginForm"
+            ref={loginForm}
             model={userInfo}
             class="login-form"
             layout="vertical"
@@ -147,9 +142,9 @@ export default defineComponent({
               >
                 登录
               </a-button>
-              <a-button type="text" long class="login-form-register-btn">
+              {/* <a-button type="text" long class="login-form-register-btn">
                 注册
-              </a-button>
+              </a-button> */}
             </a-space>
           </a-form>
         </div>

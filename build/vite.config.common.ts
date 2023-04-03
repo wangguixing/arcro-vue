@@ -2,7 +2,7 @@
  * @Author: wangguixing 1163260785@qq.com
  * @Date: 2023-03-06 16:54:08
  * @LastEditors: wangguixing
- * @LastEditTime: 2023-04-02 19:53:25
+ * @LastEditTime: 2023-04-03 21:40:22
  * @FilePath: \build\vite.config.common.ts
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -50,6 +50,11 @@ export default defineConfig({
         },
         javascriptEnabled: true,
       },
+    },
+    modules: {
+      localsConvention: 'camelCase',
+      scopeBehaviour: 'local',
+      generateScopedName: '[name]_[local]_[hash:5]',
     },
   },
 });

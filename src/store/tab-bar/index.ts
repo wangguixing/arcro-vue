@@ -1,9 +1,9 @@
 /*
  * @Author: wangguixing 1163260785@qq.com
  * @Date: 2023-03-13 17:01:41
- * @LastEditors: wangguixing 1163260785@qq.com
- * @LastEditTime: 2023-03-14 09:18:02
- * @FilePath: \arcro-vue\src\store\tab-bar\index.ts
+ * @LastEditors: wangguixing
+ * @LastEditTime: 2023-04-03 20:15:38
+ * @FilePath: \src\store\tab-bar\index.ts
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
 import type { RouteLocationNormalized } from 'vue-router';
@@ -19,7 +19,7 @@ import type { TabBarState, TagProps } from './types';
 const formatTag = (route: RouteLocationNormalized): TagProps => {
   const { name, meta, fullPath, query } = route;
   return {
-    title: meta.locale || '',
+    title: meta.title || '',
     name: String(name),
     fullPath,
     query,

@@ -2,7 +2,7 @@
  * @Author: wangguixing 1163260785@qq.com
  * @Date: 2023-03-13 17:01:42
  * @LastEditors: wangguixing
- * @LastEditTime: 2023-04-01 14:18:19
+ * @LastEditTime: 2023-04-03 20:57:40
  * @FilePath: \src\store\user\index.ts
  * @Description: 这是默认设置,请设置`customMade`, 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
  */
@@ -16,13 +16,14 @@ import {
 import type { LoginData } from '@/api/user';
 import { setTokenValue, removeToken } from '@/utils/auth';
 import { removeRouteListener } from '@/utils/route-listener';
+import avatarUrl from '@/assets/images/avatar.png';
 import type { UserState } from './types';
 import useAppStore from '../app';
 
 const useUserStore = defineStore('user', {
   state: (): UserState => ({
     name: undefined,
-    avatar: undefined,
+    avatar: avatarUrl,
     job: undefined,
     organization: undefined,
     location: undefined,

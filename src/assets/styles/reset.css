@@ -148,10 +148,6 @@ body {
   font-style: normal;
 }
 
-#app {
-  height: 100%;
-}
-
 *,
 *::before,
 *::after {

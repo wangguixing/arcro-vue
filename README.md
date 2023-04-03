@@ -22,7 +22,7 @@
       'no-shadow': 'off',
       '@typescript-eslint/no-shadow': 'error',
    ```
-2. tsx中的transtion、KeepAlive、动态组件创建
+2. tsx中的transtion、KeepAlive、动态组件创建（SFC写法无需考虑）
   ```
       import { Transition, KeepAlive, createVNode } from 'vue';
       <Transition name="fade" mode="out-in">
@@ -37,15 +37,37 @@
         </div>
       </Transition>
   ```
-3. v-slots两种写法
+3. v-slots两种写法（SFC写法无需考虑）
     ```
     举例1：
        <a-button v-slot={{ default:() => VNode, title:() => VNode }} />
     举例2：
-       <a-button v-slot={{}}>
+       <a-button>
        {{
           default: () =>  VNode,
           title: () =>  VNode,
        }}
        </a-button>
     ```
+4. tsx中的scoped作用域
+   ```
+   一、vite内置.module方案，js形式导入css，生成附带随机变量的class
+     定义使用*.module.less
+        .layout {
+            width: 100vw;
+            height: 100vh;
+            &-navbar {
+              position: fixed;
+              top: 0;
+              left: 0;
+              z-index: 100;
+              width: 100%;
+              height: @nav-size-height;
+        }
+
+        import style from *.module.less
+        <div class={style.layout}>
+           <div class={style.layoutNavbar}></div>
+        </div>
+   二、命名特有class
+   ```
