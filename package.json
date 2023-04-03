@@ -4,6 +4,12 @@
   "private": true,
   "license": "ISC",
   "author": "wangguixing",
+  "keywords": [
+    "vue3",
+    "pinia",
+    "tsx",
+    "arco design"
+  ],
   "scripts": {
     "prepare": "husky install",
     "dev": "vite --config ./build/vite.config.dev.ts",
