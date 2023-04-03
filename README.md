@@ -1,4 +1,17 @@
-### 三方组件库
+<div align="center">
+  <h1>arcro-vue</h1>
+</div>
+
+### [vue3](https://cn.vuejs.org/)、[typescript](https://www.typescriptlang.org/)、[pinia](https://pinia.vuejs.org/zh/)、[Arco Design](https://arco.design/)
+完全使用tsx，基本涵盖了vue3常用写法，欢迎补充
+
+### 特点
+- **TypeScript**  -  代码完全使用 TypeScript 书写。
+- **Pinia**
+- **Arco Design**  -  字节翻版ant-design，vue组件库。
+- **@vueuse/core** -  实用函数集
+- **mitt** -  mitt封装eventBus hooks
+### 已安装三方组件库
 - @vueuse/core（实用函数集）
 - @arco-design/web-vue (字节)
 - gsap（javascript动画库）
