@@ -8,15 +8,16 @@
 ### 特点
 - **TypeScript**  -  代码完全使用 TypeScript 书写。
 - **Pinia**
-- **Arco Design**  -  字节翻版ant-design，vue组件库。
+- **Arco Design**  -  字节出品的与阿里ant-design基本类似的vue版本的组件库。
 - **@vueuse/core** -  实用函数集
 - **mitt** -  mitt封装eventBus hooks
 ### 用法
-- 推荐使用yarn，node版本大于16；
-- 如需使用npm，自行排查处理vite-plugin-imagemin压缩问题，此库为支持图片类型压缩
+- 推荐使用yarn，node版本>16；
+- 如需使用npm，自行排查处理vite-plugin-imagemin中的jpeg子库依赖问题，vite-plugin-imagemin此库为支持图片类型压缩而引入，无此需求可卸载
 
 ```bash
 yarn:
+$ npm i -g husky
 $ yarn prepare
 $ yarn
 $ yarn dev
