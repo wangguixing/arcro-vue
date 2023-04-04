@@ -12,19 +12,17 @@
 - **@vueuse/core** -  实用函数集
 - **mitt** -  mitt封装eventBus hooks
 ### 用法
-- npm run
+- 推荐使用yarn，node版本大于16；
+- 如需使用npm，自行排查处理vite-plugin-imagemin压缩问题，此库为支持图片类型压缩
+
 ```bash
-npm:
-$ npm run prepare
-$ npm i
-$ npm run dev
 yarn:
 $ yarn prepare
 $ yarn
 $ yarn dev
 
+
 代码提交:
-$ npm run lit-staged
 $ yarn lint-staged
 
 风格修复完成后:
