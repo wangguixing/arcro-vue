@@ -36,9 +36,6 @@ export default defineConfig({
     ],
     extensions: ['.ts', '.js', '.tsx', 'json', '.vue'],
   },
-  define: {
-    'process.env': { appName: 'wangguixing' },
-  },
   css: {
     devSourcemap: false,
     preprocessorOptions: {

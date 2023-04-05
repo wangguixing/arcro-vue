@@ -13,10 +13,14 @@ import configVisualizerPlugin from './plugin/visualizer';
 import configStyleImportPlugin from './plugin/styleImport';
 import configImageminPlugin from './plugin/imagemin';
 // import configLegacyBrowser from './plugin/legacyBrowser';
+import { getViteEnvConf } from './utils';
+
+const mode = 'development';
+const env = getViteEnvConf(mode);
 
 export default mergeConfig(
   {
-    mode: 'production',
+    mode,
     plugins: [
       configCompressPlugin('gzip'),
       configVisualizerPlugin(),
@@ -24,6 +28,14 @@ export default mergeConfig(
       configImageminPlugin(),
       // configLegacyBrowser(),
     ],
+    define: {
+      'process.env': Object.entries(env).reduce((prev, [key, val]) => {
+        return {
+          ...prev,
+          [key]: val,
+        };
+      }, {}),
+    },
     build: {
       outDir: 'dist',
       assetsDir: 'statics',
