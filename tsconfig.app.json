@@ -18,6 +18,7 @@
     "module": "ES2020",
     "moduleResolution": "node",
     "strict": true,
+    "noEmit": true,
     "jsx": "preserve",
     "sourceMap": true,
     "resolveJsonModule": true,
@@ -28,7 +29,6 @@
     ],
     "skipLibCheck": true,
     "allowImportingTsExtensions": true,
-    "noEmit": true,
     "composite": true,
     "baseUrl": "./",
     "paths": {
