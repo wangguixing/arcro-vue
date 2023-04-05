@@ -106,3 +106,5 @@ $ git commit -m "fix(): bug修复"
         </div>
    二、命名特有class
    ```
+5. 增加node-polyfill的原因
+- 拓展markdown转组件，vue组件转md等需要用到node模块的问题
